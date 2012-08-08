@@ -1,0 +1,179 @@
+<head>
+  <title>chat</title>
+</head>
+
+<body>
+  {{> header}}
+  {{> wrapper}}
+  {{> footer}}
+</body>
+
+<!-- Header -->
+
+<template name="header">
+	<div id="header">
+		<h1>Meteor Chat</h1>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="about">About</a></li>
+			{{#if is_logged}}
+				<li><a href="chat">Chat</a></li>
+				<li><a href="account">Account</a></li>
+				<li><a href="logout">Logout</a></li>
+			{{else}}
+				<li><a href="register">Register</a></li>
+				<li><a href="login">Login</a></li>
+			{{/if}}
+		</ul>
+	</div>
+</template>
+
+<!-- Wrapper -->
+
+<template name="wrapper">
+	<div id="wrapper">
+		{{#if is_home}}
+			{{> home}}
+		{{/if}}
+		{{#if is_about}}
+			{{> about}}
+		{{/if}}
+		{{#if is_chat}}
+			{{> rooms}}
+			{{> chat}}
+		{{/if}}
+		{{#if is_register}}
+			{{> register}}
+		{{/if}}
+		{{#if is_login}}
+			{{> login}}
+		{{/if}}
+		{{#if is_account}}
+			{{> account}}
+		{{/if}}
+	</div>
+</template>
+
+<!-- Home -->
+
+<template name="home">
+	{{> main}}
+	{{> sidebar}}
+</template>
+
+<!-- Home/Main -->
+
+<template name="main">
+	<div id="main">
+		<h1>Welcome to Meteor Chat</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+</template>
+
+<!-- Home/Sidebar -->
+
+<template name="sidebar">
+	<div id="sidebar">
+		<h2>Users</h2>
+		<h3>{{users}}</h3>
+		<h2>Rooms</h2>
+		<h3>{{rooms}}</h3>
+	</div>
+</template>
+
+<!-- About -->
+
+<template name="about">
+	<h1>About Meteor Chat</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</template>
+
+<!-- Login -->
+
+<template name="login">
+	<div id="login">
+		<input id="login_username" type="text" placeholder="Username">
+		<input id="login_password" type="password" placeholder="Password">
+		<button id="login_submit_login">Login</button>
+	</div>
+</template>
+
+<!-- Register -->
+
+<template name="register">
+	<div id="register">
+		<input id="register_username" type="text">
+		<input id="register_password" type="password">
+		<input id="register_verify_password" type="password">
+		<button id="submit_register">Register</button>
+	</div>
+</template>
+
+<!-- Rooms -->
+
+<template name="rooms">
+	<div id="rooms">
+		<h3>Rooms</h3>
+		<ul id="room_list">
+			{{#each rooms}}
+				<li class="room">{{name}}</li>	
+			{{/each}}
+		</ul>
+		<div id="new_room">
+			<h3>New Room</h3>
+			<input id="room_name" type="text" name="room_name" placeholder="Room Name">
+			<button id="create_room">Create Room</button>
+		</div>
+	</div>
+</template>
+
+<!-- Chat -->
+
+<template name="chat">
+	<div id="chat">
+		{{> users}}
+		{{> messages}}
+		<input id="message" type="text" name="message">
+		<button id="submit_message">Submit</button>
+	</div>
+</template>
+
+<!-- Chat/Users -->
+
+<template name="users">
+	<ul id="users">
+		{{#each users}}
+			<li class="user">{{name}}</li>		
+		{{/each}}
+	</ul>
+</template>
+
+<!-- Chat/Messages -->
+
+<template name="messages">
+	<ul id="messages">
+		{{#each messages}}
+			<li class="message">
+				<span class="username">{{username}}</span>
+				<span class="timestamp">{{timestamp}}</span>
+				<span class="message">{{message}}</span>
+			</li>
+		{{/each}}
+	</ul>	
+</template>
+
+<!-- Footer -->
+
+<template name="footer">
+	<p>Meteor Chat is made with <a href="http://meteor.com">Meteor</a></p>
+</template>
