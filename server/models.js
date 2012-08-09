@@ -3,9 +3,9 @@
  */
 
   //Create
-  Users = new Meteor.Collection('users');
-  Rooms = new Meteor.Collection('rooms');
-  Messages = new Meteor.Collection('messages');
+  Users = new Meteor.Collection("users");
+  Rooms = new Meteor.Collection("rooms");
+  Messages = new Meteor.Collection("messages");
   
   //Publish
   Meteor.publish('users', function () {

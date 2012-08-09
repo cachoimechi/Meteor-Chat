@@ -11,21 +11,14 @@
 <!-- Header -->
 
 <template name="header">
-	<div id="header">
+	<header>
 		<h1>Meteor Chat</h1>
 		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="about">About</a></li>
-			{{#if is_logged}}
-				<li><a href="chat">Chat</a></li>
-				<li><a href="account">Account</a></li>
-				<li><a href="logout">Logout</a></li>
-			{{else}}
-				<li><a href="register">Register</a></li>
-				<li><a href="login">Login</a></li>
-			{{/if}}
+			<li><a id="home_link" href="/">Home</a></li>
+			<li><a id="about_link" href="about">About</a></li>
+			<li><a id="chat_link" href="chat">Chat</a></li>
 		</ul>
-	</div>
+	</header>
 </template>
 
 <!-- Wrapper -->
@@ -41,15 +34,6 @@
 		{{#if is_chat}}
 			{{> rooms}}
 			{{> chat}}
-		{{/if}}
-		{{#if is_register}}
-			{{> register}}
-		{{/if}}
-		{{#if is_login}}
-			{{> login}}
-		{{/if}}
-		{{#if is_account}}
-			{{> account}}
 		{{/if}}
 	</div>
 </template>
@@ -89,33 +73,14 @@
 <!-- About -->
 
 <template name="about">
-	<h1>About Meteor Chat</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</template>
-
-<!-- Login -->
-
-<template name="login">
-	<div id="login">
-		<input id="login_username" type="text" placeholder="Username">
-		<input id="login_password" type="password" placeholder="Password">
-		<button id="login_submit_login">Login</button>
-	</div>
-</template>
-
-<!-- Register -->
-
-<template name="register">
-	<div id="register">
-		<input id="register_username" type="text">
-		<input id="register_password" type="password">
-		<input id="register_verify_password" type="password">
-		<button id="submit_register">Register</button>
+	<div id="about">
+		<h1>About Meteor Chat</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
 </template>
 
@@ -123,8 +88,8 @@
 
 <template name="rooms">
 	<div id="rooms">
-		<h3>Rooms</h3>
 		<ul id="room_list">
+			<h3>Rooms</h3>
 			{{#each rooms}}
 				<li class="room">{{name}}</li>	
 			{{/each}}
@@ -152,8 +117,9 @@
 
 <template name="users">
 	<ul id="users">
+		<h3>Users Online</h3>
 		{{#each users}}
-			<li class="user">{{name}}</li>		
+			<li class="user">{{username}}</li>		
 		{{/each}}
 	</ul>
 </template>
@@ -165,7 +131,7 @@
 		{{#each messages}}
 			<li class="message">
 				<span class="username">{{username}}</span>
-				<span class="timestamp">{{timestamp}}</span>
+				<span class="timestamp">[{{timestamp}}]: </span>
 				<span class="message">{{message}}</span>
 			</li>
 		{{/each}}
@@ -175,5 +141,7 @@
 <!-- Footer -->
 
 <template name="footer">
-	<p>Meteor Chat is made with <a href="http://meteor.com">Meteor</a></p>
+	<footer>
+		<p>Meteor Chat is made with <a href="http://meteor.com">Meteor</a></p>
+	</footer>
 </template>

@@ -7,11 +7,7 @@
     	routes: {
     		"/": "home",
     		"about": "about",
- 			"chat": "chat",
-    		"register": "register",
-    		"login": "login",
-    		"logout": "logout",
-    		"account": "account"
+ 			"chat": "chat"
     	},
     	home: function () {
     		Session.set("page", "home");
@@ -21,20 +17,6 @@
     	},
     	chat: function () {
     		Session.set("page", "chat");
-    	},
-    	register: function () {
-    		Session.set("page", "register");
-    	},
-    	login: function () {
-    		Session.set("page", "login");
-    	},
-    	logout: function () {
-    		Session.set("page", "home");
-    		Session.set("is_logged", false);
-            this.navigate("/", true);
-    	},
-    	account: function () {
-    		Session.set("page", "account");
     	}
     });
 
