@@ -135,14 +135,22 @@
   };
 
   Template.chat.events = {
-    "click #submit_message": function () {
+    "click #submit_message, keyup #message": function () {
       var message = $("#message").val(),
           tm = new Date(),
           hours = tm.getUTCHours();
           minutes = tm.getUTCMinutes();
           seconds = tm.getUTCSeconds();
-          timestamp = hours + ":" + minutes + ":" + seconds;
-      if (message.substr(0, 9) === "/username") {
+          timestamp = hours + ":" + minutes + ":" + seconds,
+          is_keyup = false,
+          is_click = false;
+      if (event.type === "keyup" && event.keyCode === 13) {
+        is_keyup = true;
+      } else if (event.type === "click") {
+        is_click = true;
+      }
+      if (is_keyup || is_click) {
+        if (message.substr(0, 9) === "/username") {
           var new_username = message.substr(10);
           Users.update(Session.get("user_id"), {username: new_username});
           Session.set("username", new_username);
@@ -155,6 +163,7 @@
           });
       }
       $("#message").val("");
+      }
     }
   };
 
