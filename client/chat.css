@@ -18,6 +18,10 @@ html, body {
 
 input {
 	font-size: 100%;
+	padding: 4px;
+}
+
+button {
 	padding: 3px;
 }
 
@@ -81,6 +85,10 @@ header a:hover {
 
 	background: white;
 	border: 1px solid #ddd;
+}
+
+#main p {
+	margin-bottom: 10px;
 }
 
 /* Home/Sidebar Styles */
@@ -181,25 +189,25 @@ header a:hover {
 	border: 1px solid #ddd;
 }
 
-#message {
-	position: absolute;
-	bottom: 20px;
-	clear: both;
-
-	width: 100%;
-	height: 20px;
-}
-
 .username {
 	font-weight: bold;
 }
 
-#submit_message {
-	position: absolute;
-	bottom: 0;
+#chat_input {
+	clear: both;
+	margin-top: 10px;
+}
 
-	width: 100%;
-	height: 20px;
+#message {
+	width: 80%;
+	height: 30px;
+	float: left;
+}
+
+#submit_message {
+	width: 20%;
+	height: 30px;
+	float: left;
 }
 
 /* Footer Styles */

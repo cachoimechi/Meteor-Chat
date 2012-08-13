@@ -3,6 +3,23 @@
  */
 
   //Header
+  Template.header.events = {
+    "click #home_link": function (event) {
+      event.preventDefault();
+      Router.navigate($(event.currentTarget).attr("href"));
+      Session.set("page", "home");
+    },
+    "click #about_link": function (event) {
+      event.preventDefault();
+      Router.navigate($(event.currentTarget).attr("href"));
+      Session.set("page", "about");
+    },
+    "click #chat_link": function (event) {
+      event.preventDefault();
+      Router.navigate($(event.currentTarget).attr("href"));
+      Session.set("page", "chat");
+    }
+  };
 
   //Wrapper
   Template.wrapper.is_home = function () {
@@ -113,6 +130,10 @@
   };
 
   //Chat
+  Template.chat.in_room = function () {
+    return Session.get("room_id");
+  };
+
   Template.chat.events = {
     "click #submit_message": function () {
       var message = $("#message").val(),
@@ -121,12 +142,18 @@
           minutes = tm.getUTCMinutes();
           seconds = tm.getUTCSeconds();
           timestamp = hours + ":" + minutes + ":" + seconds;
-      Messages.insert({
-        username: Session.get("username"),
-        room: Session.get("room_id"),
-        timestamp: timestamp,
-        message: message
-      });
+      if (message.substr(0, 9) === "/username") {
+          var new_username = message.substr(10);
+          Users.update(Session.get("user_id"), {username: new_username});
+          Session.set("username", new_username);
+      } else {
+          Messages.insert({
+              username: Session.get("username"),
+              room: Session.get("room_id"),
+              timestamp: timestamp,
+              message: message
+          });
+      }
       $("#message").val("");
     }
   };
