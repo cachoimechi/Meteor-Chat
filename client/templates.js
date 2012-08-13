@@ -140,7 +140,7 @@
           tm = new Date(),
           hours = tm.getUTCHours();
           minutes = tm.getUTCMinutes();
-          seconds = tm.getUTCSeconds();
+          seconds = tm.getUTCSeconds() < 10 ? "0" + tm.getUTCSeconds() : tm.getUTCSeconds();
           timestamp = hours + ":" + minutes + ":" + seconds,
           is_keyup = false,
           is_click = false;
